@@ -1,55 +1,67 @@
-package info.omgene.selenium.appmanager;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-
-/**
- * Created by Vasya on 17.10.2016.
- */
-public class ApplicationManager {
-    protected WebDriver wd;
-
-    public HelperBase(WebDriver wd) {
-        this.wd = wd;
-    }
-
-    protected void type(By locator, String text) {
-        click(locator);
-        if (text != null) {
-            String existingText = wd.findElement(locator).getAttribute("value");
-            if (! text.equals(existingText)) {
-                wd.findElement(locator).clear();
-                wd.findElement(locator).sendKeys(text);
-            }
-        }
-    }
-
-    protected void click(By locator) {
-        wd.findElement(locator).click();
-    }
-
-    public void accept(){
-        wd.switchTo().alert().accept();
-    }
-
-    public boolean isAlertPresent() {
-        try {
-            wd.switchTo().alert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
-
-    }
-
-    protected boolean isElementPresent(By locator) {
-        try {
-            wd.findElement(locator);
-            return true;
-        }   catch (NoSuchElementException ex){
-            return false;
-        }
-    }
-}
+//package info.omgene.selenium.appmanager;
+//
+//import org.openqa.selenium.*;
+//import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.firefox.FirefoxDriver;
+//import org.openqa.selenium.remote.BrowserType;
+//import org.openqa.selenium.remote.DesiredCapabilities;
+//import org.openqa.selenium.remote.RemoteWebDriver;
+//
+//import java.io.File;
+//import java.io.FileReader;
+//import java.io.IOException;
+//import java.net.URL;
+//import java.util.Properties;
+//import java.util.concurrent.TimeUnit;
+//
+//public class ApplicationManager {
+//    private final Properties properties;
+//    WebDriver wd;
+//
+//    private NavigationHelper navigationHelper;
+//    private SessionHelper sessionHelper;
+//    private String browser;
+//
+//    public ApplicationManager(String browser) {
+//        this.browser = browser;
+//        properties = new Properties();
+//    }
+//
+//    public void init() throws IOException {
+//        String target = System.getProperty("target", "local");
+//        properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+//
+//
+//        if ("".equals(properties.getProperty("selenium.server"))) {
+//            if (browser.equals(BrowserType.FIREFOX)) {
+//                wd = new FirefoxDriver();
+//            } else if (browser.equals(BrowserType.CHROME)) {
+//                wd = new ChromeDriver();
+//            }
+//        } else {
+//            DesiredCapabilities capabilities = new DesiredCapabilities();
+//            capabilities.setBrowserName(browser);
+//            capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "mac")));
+//            wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
+//        }
+//        wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+//        wd.get(properties.getProperty("web.baseUrl"));
+//        navigationHelper = new NavigationHelper(this);
+//        sessionHelper = new SessionHelper(this);
+//        sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
+//
+//    }
+//
+//    public void stop() {
+//        wd.quit();
+//    }
+//
+//    public NavigationHelper goTo() {
+//        return navigationHelper;
+//    }
+//
+//    public byte[] takeScreenshot() {
+//        return ((TakesScreenshot) wd).getScreenshotAs(OutputType.BYTES);
+//    }
+//    }
+//}
