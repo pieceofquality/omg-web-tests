@@ -1,12 +1,14 @@
-package info.omgene.selenium.tests;
+package info.omgene.selenium.model;
 
-public class GBData {
+public class GiveBackData {
     private final String title;
     private final String shortDescription;
+    private final String description;
 
-    public GBData(String title, String shortDescription) {
+    public GiveBackData(String title, String shortDescription, String description) {
         this.title = title;
         this.shortDescription = shortDescription;
+        this.description = description;
     }
 
     public String getTitle() {
@@ -15,5 +17,9 @@ public class GBData {
 
     public String getShortDescription() {
         return shortDescription;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

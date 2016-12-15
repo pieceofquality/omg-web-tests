@@ -1,5 +1,5 @@
 package info.omgene.selenium.model;
 
+public class OMGAcademyArticleData {
 
-public class WHData {
 }
