@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -14,12 +15,12 @@ import java.util.concurrent.TimeUnit;
 
 import static org.testng.Assert.assertEquals;
 
-public class WHCreationTests {
-    PhantomJSDriver wd;
+public class OACreationTests {
+    ChromeDriver wd;
     
     @BeforeMethod
     public void setUp() throws Exception {
-        wd = new PhantomJSDriver();
+        wd = new ChromeDriver();
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         wd.get("http://omgene.shakuro.info/admin/news");
         login();
@@ -36,41 +37,61 @@ public class WHCreationTests {
     }
 
     @Test
-    public void WH() {
-
-
-        gotoWHPage();
-        initWHCreation();
-        fillWHForm(new WHData("test", "test"));
+    public void OASubjectCreation(){
+//        gotoOASubjectPage();
+        initOASubjectCreation();
+        fillOAForm(new OAData("test", "1", "test"));
         submit();
         assertEquals("test | OMGene", wd.getTitle());
+    }
+
+    @Test
+    public void OA() {
+
     }
 
     private void submit() {
         wd.findElement(By.name("commit")).click();
     }
 
-    private void fillWHForm(WHData WHData) {
+    private void fillOAForm(OAData OAData) {
         wd.findElement(By.id("news_title")).click();
         wd.findElement(By.id("news_title")).clear();
-        wd.findElement(By.id("news_title")).sendKeys(WHData.getTitle());
+        wd.findElement(By.id("news_title")).sendKeys(OAData.getTitle());
         wd.findElement(By.id("news_short_description")).click();
         wd.findElement(By.id("news_short_description")).clear();
-        wd.findElement(By.id("news_short_description")).sendKeys(WHData.getShortDescription());
+        wd.findElement(By.id("news_short_description")).sendKeys(OAData.getPosition());
         ((JavascriptExecutor)wd).executeScript("$('#news_description').redactor('insert.html', 'test');");
         wd.findElement(By.id("news_preview")).sendKeys("C:\\Projects\\omg-web-tests\\src\\test\\resources\\wh(main).png");
         wd.findElement(By.id("news_image")).sendKeys("C:\\Projects\\omg-web-tests\\src\\test\\resources\\wh(main).png");
 
         wd.findElement(By.id("news_image")).sendKeys("C:\\Projects\\omg-web-tests\\src\\test\\resources\\wh(main).png");
     }
+    private void fillOASubjectForm(OAData OAData) {
+        wd.findElement(By.id("article_category_title")).click();
+        wd.findElement(By.id("article_category_title")).clear();
+        wd.findElement(By.id("article_category_title")).sendKeys(OAData.getTitle());
+        wd.findElement(By.id("article_category_position")).click();
+        wd.findElement(By.id("article_category_position")).clear();
+        wd.findElement(By.id("article_category_position")).sendKeys(OAData.getPosition());
+        wd.findElement(By.id("article_category_description")).click();
+        wd.findElement(By.id("article_category_description")).clear();
+        wd.findElement(By.id("article_category_description")).sendKeys(OAData.getDescription());
 
-    private void initWHCreation() {
-        wd.findElement(By.linkText("Create What's Happening content")).click();
     }
 
-    private void gotoWHPage() {
-        wd.findElement(By.linkText("What's Happening")).click();
+
+
+    private void initOASubjectCreation() {
+        wd.findElement(By.linkText("New Academy Subject")).click();
     }
+
+//    private void gotoOASubjectPage() {
+//        Actions action = new Actions(wd);
+//        action.moveToElement(hoverElement).perform();
+//        By locator = By.linkText("Academy Subject");
+//        wd.click(locator);
+//    }
 
 
     @AfterMethod
