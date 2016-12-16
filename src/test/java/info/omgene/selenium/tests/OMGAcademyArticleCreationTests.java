@@ -6,11 +6,10 @@ public class OMGAcademyArticleCreationTests extends TestBase {
 
     @Test
     public void testOMGAcademyArticleCreation() {
-        app.gotoOMGAcademyArticlesPage();
+        app.getNavigationHelper().gotoOMGAcademyArticlesPage();
         app.initOMGAcademyArticleCreation();
         app.fillOMGAcademyArticleForm();
         app.submit();
-
     }
 
 

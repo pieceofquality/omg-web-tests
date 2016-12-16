@@ -4,11 +4,15 @@ public class GiveBackData {
     private final String title;
     private final String shortDescription;
     private final String description;
+    private final String location;
+    private final String eventDate;
 
-    public GiveBackData(String title, String shortDescription, String description) {
+    public GiveBackData(String title, String shortDescription, String description, String location, String eventDate) {
         this.title = title;
         this.shortDescription = shortDescription;
         this.description = description;
+        this.location = location;
+        this.eventDate = eventDate;
     }
 
     public String getTitle() {
@@ -21,5 +25,13 @@ public class GiveBackData {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getEventDate() {
+        return eventDate;
     }
 }

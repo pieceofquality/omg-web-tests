@@ -6,7 +6,7 @@ public class AcademySubjectCreationTests extends TestBase {
 
     @Test
     public void testOMGASubjectCreation(){
-        app.gotoAcademySubjectPage();
+        app.getNavigationHelper().gotoAcademySubjectPage();
         app.initAcademySubjectCreation();
         app.fillOMGAcademySubjectCreation("test", "1");
         app.submit();

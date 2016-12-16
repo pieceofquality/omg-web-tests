@@ -7,9 +7,8 @@ public class WhatsHappeningCreationTests extends TestBase{
 
     @Test
     public void testWhatsHappenningCreation() {
-        app.getWhatsHappeningHelper().gotoWHPage();
-        app.getWhatsHappeningHelper().initWHCreation();
+        app.getNavigationHelper().gotoWhatsHappeningPage();
+        app.getWhatsHappeningHelper().initWhatsHappeningCreation();
         app.getWhatsHappeningHelper().fillWhatsHappeningForm(new WhatsHappeningData("test", "test", "test", "dicaprion"));
-        app.submit();
     }
 }
