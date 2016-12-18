@@ -9,6 +9,7 @@ public class GiveBackCreationTests extends TestBase{
     public void testGiveBackCreation() {
         app.getNavigationHelper().gotoGiveBacksPage();
         app.getGiveBackHelper().initGiveBackCreation();
-        app.getGiveBackHelper().fillGiveBackForm(new GiveBackData("test", "test", "test", "test", "2016-12-31 17:00"));
+        app.getGiveBackHelper().fillGiveBackForm(new GiveBackData("test", "test", "test",
+                "test", "2016-12-31 17:00"));
     }
 }

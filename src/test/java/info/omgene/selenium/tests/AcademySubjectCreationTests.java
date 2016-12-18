@@ -9,7 +9,6 @@ public class AcademySubjectCreationTests extends TestBase {
         app.getNavigationHelper().gotoAcademySubjectPage();
         app.initAcademySubjectCreation();
         app.fillOMGAcademySubjectCreation("test", "1");
-        app.submit();
     }
 
 }

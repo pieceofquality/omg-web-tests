@@ -1,28 +1,56 @@
 package info.omgene.selenium.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
 
-    ChromeDriver wd;
+    WebDriver wd;
 
+    private OMGAcademyArticleHelper omgAcademyArticleHelper;
     private NavigationHelper navigationHelper;
     private GiveBackHelper giveBackHelper;
     private WhatsHappeningHelper whatsHappeningHelper;
     private SessionHelper sessionHelper;
+    private String browser;
+
+    public ApplicationManager(String browser) {
+        this.browser = browser;
+    }
 
     public void init() {
-        wd = new ChromeDriver();
+        if (browser.equals(BrowserType.CHROME)) {
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("start-maximized");
+            DesiredCapabilities caps = new DesiredCapabilities();
+            caps.setCapability(ChromeOptions.CAPABILITY, options);
+            wd = new ChromeDriver(caps);
+        } else if (browser.equals(BrowserType.FIREFOX)) {
+            wd = new FirefoxDriver();
+        } else if (browser.equals(BrowserType.IE)) {
+            wd = new InternetExplorerDriver();
+        } else if (browser.equals(BrowserType.EDGE)) {
+            wd = new EdgeDriver();
+        } else if (browser.equals(BrowserType.PHANTOMJS)) {
+            wd = new PhantomJSDriver();
+        }
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        wd.get("http://omgene.shakuro.info/admin/news");
+        wd.get("http://omgene.shakuro.info/admin/login");
         giveBackHelper = new GiveBackHelper(wd);
         whatsHappeningHelper = new WhatsHappeningHelper(wd);
         navigationHelper = new NavigationHelper(wd);
         sessionHelper = new SessionHelper(wd);
+//        sessionHelper.loginByCookie();
         sessionHelper.login("admin@example.com", "password");
     }
 
@@ -32,22 +60,6 @@ public class ApplicationManager {
 
     public void initAcademySubjectCreation() {
         wd.findElement(By.linkText("New Academy Subject")).click();
-    }
-
-    public void initOMGAcademyArticleCreation() {
-        wd.findElement(By.linkText("Add content")).click();
-    }
-
-    public void fillOMGAcademyArticleForm() {
-        wd.findElement(By.id("article_title")).click();
-        wd.findElement(By.id("article_title")).clear();
-        wd.findElement(By.id("article_title")).sendKeys("test");
-        wd.findElement(By.id("article_short_description")).click();
-        wd.findElement(By.id("article_short_description")).clear();
-        wd.findElement(By.id("article_short_description")).sendKeys("test");
-        wd.executeScript("$('#article_description').redactor('insert.html', 'test');");
-        wd.findElement(By.id("article_icon")).sendKeys("C:\\academy.jpg");
-        wd.findElement(By.id("article_image")).sendKeys("C:\\academy.jpg");
     }
 
     public void fillOMGAcademySubjectCreation(String title, String position) {
@@ -63,15 +75,6 @@ public class ApplicationManager {
         return whatsHappeningHelper;
     }
 
-    public static boolean isAlertPresent(ChromeDriver wd) {
-        try {
-            wd.switchTo().alert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
-    }
-
     public GiveBackHelper getGiveBackHelper() {
         return giveBackHelper;
     }
@@ -80,7 +83,7 @@ public class ApplicationManager {
         return navigationHelper;
     }
 
-    public void submit() {
-        wd.findElement(By.name("commit")).click();
+    public OMGAcademyArticleHelper getOmgAcademyArticleHelper() {
+        return omgAcademyArticleHelper;
     }
 }

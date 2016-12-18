@@ -1,19 +1,19 @@
 package info.omgene.selenium.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.WebDriver;
 
 public class NavigationHelper extends HelperBase {
 
-    public NavigationHelper(ChromeDriver wd) {
+
+
+    public NavigationHelper(WebDriver wd) {
         super(wd);
     }
 
     public void gotoAcademySubjectPage() {
-        Actions action = new Actions(wd);
-        action.moveToElement(wd.findElement(By.linkText("OMG Academy"))).build()
-                .perform();
+
+        hover(By.linkText("OMG Academy"));
         click(By.linkText("Academy Subject"));
     }
 

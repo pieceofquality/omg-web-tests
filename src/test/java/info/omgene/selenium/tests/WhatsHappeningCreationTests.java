@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 public class WhatsHappeningCreationTests extends TestBase{
 
     @Test
-    public void testWhatsHappenningCreation() {
+    public void testWhatsHappeningCreation() {
         app.getNavigationHelper().gotoWhatsHappeningPage();
         app.getWhatsHappeningHelper().initWhatsHappeningCreation();
         app.getWhatsHappeningHelper().fillWhatsHappeningForm(new WhatsHappeningData("test", "test", "test", "dicaprion"));
