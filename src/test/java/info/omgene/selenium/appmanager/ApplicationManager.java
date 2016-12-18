@@ -50,8 +50,8 @@ public class ApplicationManager {
         whatsHappeningHelper = new WhatsHappeningHelper(wd);
         navigationHelper = new NavigationHelper(wd);
         sessionHelper = new SessionHelper(wd);
-//        sessionHelper.loginByCookie();
-        sessionHelper.login("admin@example.com", "password");
+        sessionHelper.loginByCookie();
+//        sessionHelper.login("admin@example.com", "password");
     }
 
     public void stop() {

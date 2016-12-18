@@ -18,7 +18,7 @@ public class SessionHelper extends HelperBase{
     }
 
     public void loginByCookie (){
-        wd.manage().addCookie(new Cookie("_omgene_session", "NVZtN1pmREE1aTVxVUVBZ3A0ci8zWmRaajZuTVNINzZCblN4OUVEb2puZWRXL0kybVVWQnY5bTVHREZpNkIzZzBSc2lLdFRjN3orS3Q3aWVCUVQrS3QrSzcwbFFIWjhEWm1zUDUreTZCWC9sNVJNbllGOVN2dUtJNTBnZmt4U2RUMUFaMTNHUHI3Nk9IenluZktvM0liNms2WlBoemVBa0xHdTUwTkFqMFp3OTlWRDVGTmtjQ0J6SFlSb3Jjbk5uRjVqV1BMWjNDOWZybmhvT0xUdk9YYTlVcUhIK0Z4SGJIK3k3bTFGaDFHNEVVS3ZoVlJ0dmVTSnlXRTdTdG14cWREbzVSUVB4cHFKREorRVdvZUQvYzduSUtOdVBkRHRRVHlwNGUyUW04YWFhTVZrdW9aOFRLRVZmNi93NUh4MFlYTk9ydzFJSFZZamdRdWxRNys1Rkd3PT0tLVhtZHdVVFFuTVFTNU9hbGpmakc5b0E9PQ%3D%3D--f537aa782820786c63dfa0c6346e324163fb54ec"));
+        wd.manage().addCookie(new Cookie("remember_admin_user_token", "W1sxXSwiJDJhJDEwJHZTVHZCLlVMOWJidHg2ZGRwcmxsNHUiLCIyMDE2LTEyLTE4VDIyOjQ4OjEwLjU5NFoiXQ%3D%3D--bce9af03dd36b39e07a6418647e7a12985484198"));
         wd.navigate().refresh();
     }
 }
