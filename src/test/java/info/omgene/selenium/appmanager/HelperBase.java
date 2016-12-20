@@ -44,32 +44,38 @@ public class HelperBase {
         }
     }
 
-
-    //This method adds set of cookies for a domain
-    public void addCookiesToBrowser(Set<Cookie> cookies, String name, String value, String domain, String path, Date expiry) {
-        for (Cookie c : cookies) {
-            if (c != null) {
-                if (c.getDomain().contains(domain)) {
-                    wd.manage().addCookie(
-                            new Cookie(name, value, domain, path, expiry));
-                }
-            }
-        }
-        wd.navigate().refresh();
-    }
-
-    protected void hover(By locator) {
+    public void hover(By locator) {
         Actions action = new Actions(wd);
         action.moveToElement(wd.findElement(locator)).build()
                 .perform();
     }
 
-    protected void insertTextToRedactor(final String locator, final String text) {
+    public void insertTextToRedactor(final String locator, final String text) {
         ((JavascriptExecutor)wd).executeScript("$('" + locator + "').redactor('insert.html', '" + text + "');");
     }
 
-    protected void select(By locator, String category) {
+    public void select(By locator, String category) {
         new Select(wd.findElement(locator)).selectByVisibleText(category);
+    }
+
+    public void accept(){
+        wd.switchTo().alert().accept();
+    }
+
+    public void selectItem() {
+        click(By.className("collection_selection"));
+    }
+
+    public void batchActions(){
+        click(By.className("dropdown_menu_button"));
+    }
+
+    public void deleteSelected(){
+        click(By.linkText("Delete Selected"));
+    }
+
+    public void applyBatchActions() {
+        click(By.cssSelector(".ui-dialog-buttonset .ui-button-text-only:first-child"));
     }
 }
 

@@ -12,7 +12,6 @@ public class NavigationHelper extends HelperBase {
     }
 
     public void gotoAcademySubjectPage() {
-
         hover(By.linkText("OMG Academy"));
         click(By.linkText("Academy Subject"));
     }

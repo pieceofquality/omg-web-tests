@@ -27,4 +27,8 @@ public class WhatsHappeningHelper extends HelperBase {
     public void initWhatsHappeningModification() {
         click(By.linkText("Edit"));
     }
+
+    public void initWhatsHappeningDeletion() {
+        click(By.linkText("Delete"));
+     }
 }
