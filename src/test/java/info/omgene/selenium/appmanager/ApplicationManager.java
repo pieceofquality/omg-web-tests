@@ -23,6 +23,8 @@ public class ApplicationManager {
     private WhatsHappeningHelper whatsHappeningHelper;
     private SessionHelper sessionHelper;
     private String browser;
+    private PeerReviewUserHelper peerReviewUserHelper;
+    private AcademySubjectHelper academySubjectHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -58,9 +60,7 @@ public class ApplicationManager {
         wd.quit();
     }
 
-    public void initAcademySubjectCreation() {
-        wd.findElement(By.linkText("New Academy Subject")).click();
-    }
+
 
     public void fillOMGAcademySubjectCreation(String title, String position) {
         wd.findElement(By.id("article_category_title")).click();
@@ -85,5 +85,13 @@ public class ApplicationManager {
 
     public OMGAcademyArticleHelper getOmgAcademyArticleHelper() {
         return omgAcademyArticleHelper;
+    }
+
+    public PeerReviewUserHelper getPeerReviewUserHelper() {
+        return peerReviewUserHelper;
+    }
+
+    public AcademySubjectHelper getAcademySubjectHelper() {
+        return academySubjectHelper;
     }
 }

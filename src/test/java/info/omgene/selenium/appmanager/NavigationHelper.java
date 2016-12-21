@@ -12,8 +12,7 @@ public class NavigationHelper extends HelperBase {
     }
 
     public void gotoAcademySubjectPage() {
-        hover(By.linkText("OMG Academy"));
-        click(By.linkText("Academy Subject"));
+        clickSubMenu(By.linkText("OMG Academy"), By.linkText("Academy Subject"));
     }
 
     public void gotoOMGAcademyArticlesPage() {
@@ -26,5 +25,10 @@ public class NavigationHelper extends HelperBase {
 
     public void gotoWhatsHappeningPage() {
         click(By.linkText("What's Happening"));
+    }
+
+    public void gotoPeerReviewUsersPage() {
+        hover(By.linkText("Peer Review Team"));
+        click(By.linkText("Peer Review Users"));
     }
 }

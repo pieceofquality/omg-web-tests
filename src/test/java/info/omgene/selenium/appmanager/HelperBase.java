@@ -4,9 +4,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
-import java.util.Date;
-import java.util.Set;
-
 public class HelperBase {
 
     protected WebDriver wd;
@@ -48,6 +45,12 @@ public class HelperBase {
         Actions action = new Actions(wd);
         action.moveToElement(wd.findElement(locator)).build()
                 .perform();
+    }
+
+    public void clickSubMenu(By hoveredLocator, By clickLocator){
+        Actions action = new Actions(wd);
+        action.moveToElement(wd.findElement(hoveredLocator)).build().perform();
+        action.moveToElement(wd.findElement(clickLocator)).click().build().perform();
     }
 
     public void insertTextToRedactor(final String locator, final String text) {
